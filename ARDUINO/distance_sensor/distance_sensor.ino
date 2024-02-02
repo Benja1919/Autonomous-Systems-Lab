@@ -36,17 +36,17 @@ void loop(void)
   // Serial.print("Distance(mm): ");
   Serial.println(distance);
   // Serial.print(",");
-  if (distance >= 1500){
+  if (distance >= 1500){ //assume the the max valid length is 1.5m
     speed = 255;
   }
   else{
-    speed = map(distance, 0, 1500 , 127, 255);
+    speed = map(distance, 0, 1500 , 127, 255); //Set speed proportionally to distance.
   }
   analogWrite(in1, speed);
   analogWrite(in2 , 255- speed);
   Serial.println(speed);
-  float distanceInches = distance * 0.0393701;
-  float distanceFeet = distanceInches / 12.0;
+  //float distanceInches = distance * 0.0393701;
+  //float distanceFeet = distanceInches / 12.0;
   // Serial.print("\tDistance(ft): ");
   // Serial.print(distanceFeet, 2);
   Serial.println();
