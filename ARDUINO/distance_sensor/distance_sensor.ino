@@ -1,4 +1,8 @@
-#include <Wire.h>
+/*
+  This code spin the motor based on the measured distance, the farther the object the faster the rotation.
+  We assumed the the sensor can 'see' an object in range of 1.5 meters.
+*/
+  #include <Wire.h>
 #include "SparkFun_VL53L1X.h" //Click here to get the library: http://librarymanager/All#SparkFun_VL53L1X
 //Optional interrupt and shutdown pins.
 #define SHUTDOWN_PIN 2
@@ -36,7 +40,7 @@ void loop(void)
   // Serial.print("Distance(mm): ");
   Serial.println(distance);
   // Serial.print(",");
-  if (distance >= 1500){ //assume the the max valid length is 1.5m
+  if (distance >= 1500){ //assume the the max valid range is 1.5m
     speed = 255;
   }
   else{
