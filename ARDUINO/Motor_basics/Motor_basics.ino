@@ -1,4 +1,6 @@
-int in1 = 5;
+/* This code, spin the motor CW for 5 seconde, break for 5 seconds, spin CCW for 5 seconds, break and so on. */
+  
+  int in1 = 5;
 int in2 = 6;
 void setup() {
   // Set the 'output' pins
