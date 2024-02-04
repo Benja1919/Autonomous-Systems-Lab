@@ -1,3 +1,6 @@
+/*
+  This code gets an input fron the user (from serial), and adjust the LED's in accordance.
+*/
 // pins for the LEDs:
 
 const int red = 9 ;
