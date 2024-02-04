@@ -1,3 +1,8 @@
+/*
+  This code spins the motor based on the potentiometer position.
+  i.e. Middle - breaks. Right - rotates CW and Left - rotates CCW. The more off center the position the faster the rotation.
+*/
+  breaks while the potentiometer in right in the middle, spin CW when its right to in and
 int in1 = 5;
 int in2 = 6;
 int speed = 127;
