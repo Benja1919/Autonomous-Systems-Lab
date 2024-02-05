@@ -12,8 +12,8 @@ volatile int encoderCounts = 0;
 //inintiazlize different variables
 volatile double diff_in_time = 0;
 double desired_speed = 0.0;
-const double maxLim = 255.0;
-const double minLim = -255.0;
+const double maxLim = 200.0;
+const double minLim = -200.0;
 double lastTime = 0.0;
 double curr_loc = 0.0;
 double prev_loc = 0.0;
