@@ -1,0 +1,9 @@
+sway:
+kp 0.025
+ki 0
+kd 0.1
+
+thro:
+kp 3.5
+ki 0.2
+kd 7.5

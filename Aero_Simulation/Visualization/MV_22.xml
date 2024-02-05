@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Scene xmlns="http://www.quarcservice.com/schemas/visualization_scene_file.xsd" Version="1.3">
+   <SceneParameters>
+      <Mouse>
+         <Forward Button="wheel" Direction="forward" Speed="0.002"/>
+         <Left Button="right" Direction="left" Speed="0.002"/>
+         <Up Button="right" Direction="backward" Speed="0.002"/>
+         <Roll Alt="true" Button="left" Direction="right" Speed="0.002"/>
+         <Pitch Button="left" Direction="forward" Speed="0.002"/>
+         <Yaw Button="left" Direction="left" Speed="0.002"/>
+      </Mouse>
+      <Camera ClipFar="1000" ClipNear="0.1" ViewAngle="20"/>
+      <Light Ambient="0.314 0.314 0.314" Background="0.678 0.922 1"/>
+      <Window DisplayMode="window" FrameRate="30" Height="768" Left="0" Menu="true" StatusBar="true" Top="0" Width="1024" WindowPosition="center"/>
+      <Fog Color="1 1 1" Density="0.5" End="10.0" Mode="none" Start="5.0"/>
+      <Keyboard>
+         <Translation Backward="s" Down="q" Forward="w" PanLeft="a" PanRight="d" Speed="1" Up="e"/>
+      </Keyboard>
+   </SceneParameters>
+   <MeshPool>
+      <Mesh Filename="x3d\infinite_plane.x3d" ID="mesh.infinite_plane"/>
+      <Mesh Filename="x3d\skybox.x3d" ID="mesh.skybox"/>
+      <Mesh Filename="x3d\sphere.x3d" ID="mesh.sphere"/>
+      <Mesh Filename="x3d\MV_22_Fuselage.x3d" ID="mesh.MV_22_Fuselage"/>
+      <Mesh Filename="x3d\MV_22_Tail_Flap.x3d" ID="mesh.MV_22_Tail_Flap"/>
+      <Mesh Filename="x3d\MV_22_Tail_CS01.x3d" ID="mesh.MV_22_Tail_CS01"/>
+      <Mesh Filename="x3d\MV_22_Tail_CS02.x3d" ID="mesh.MV_22_Tail_CS02"/>
+      <Mesh Filename="x3d\MV_22_Bay_Door_02.x3d" ID="mesh.MV_22_Bay_Door_02"/>
+      <Mesh Filename="x3d\MV_22_Bay_Door_01.x3d" ID="mesh.MV_22_Bay_Door_01"/>
+      <Mesh Filename="x3d\MV_22_Engines.x3d" ID="mesh.MV_22_Engines"/>
+      <Mesh Filename="x3d\MV_22_Prop01.x3d" ID="mesh.MV_22_Prop01"/>
+      <Mesh Filename="x3d\MV_22_Prop02.x3d" ID="mesh.MV_22_Prop02"/>
+      <Mesh Filename="x3d\MV_22_FlapL_02.x3d" ID="mesh.MV_22_FlapL_02"/>
+      <Mesh Filename="x3d\MV_22_FlapL_01.x3d" ID="mesh.MV_22_FlapL_01"/>
+      <Mesh Filename="x3d\MV_22_FlapR_01.x3d" ID="mesh.MV_22_FlapR_01"/>
+      <Mesh Filename="x3d\MV_22_FlapR_02.x3d" ID="mesh.MV_22_FlapR_02"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_L01.x3d" ID="mesh.MV_22_Gear_Door_L01"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_R01.x3d" ID="mesh.MV_22_Gear_Door_R01"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_L02.x3d" ID="mesh.MV_22_Gear_Door_L02"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_R02.x3d" ID="mesh.MV_22_Gear_Door_R02"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_F_02.x3d" ID="mesh.MV_22_Gear_Door_F_02"/>
+      <Mesh Filename="x3d\MV_22_Gear_Door_F_01.x3d" ID="mesh.MV_22_Gear_Door_F_01"/>
+      <Mesh Filename="x3d\MV_22_Gear_F.x3d" ID="mesh.MV_22_Gear_F"/>
+      <Mesh Filename="x3d\MV_22_Gear_R.x3d" ID="mesh.MV_22_Gear_R"/>
+      <Mesh Filename="x3d\MV_22_Gear_L.x3d" ID="mesh.MV_22_Gear_L"/>
+      <Mesh Filename="x3d\MV_22_Cargo_Door04.x3d" ID="mesh.MV_22_Cargo_Door04"/>
+      <Mesh Filename="x3d\MV_22_Cargo_door03.x3d" ID="mesh.MV_22_Cargo_door03"/>
+   </MeshPool>
+   <TexturePool>
+      <Texture Filename="images\skybox_tropical.png" ID="image.skybox_tropical"/>
+      <Texture Filename="images\grid.tif" ID="image.grid"/>
+   </TexturePool>
+   <ObjectPool>
+      <Object ID="object.infinite_plane" Mesh="mesh.infinite_plane" Texture="image.grid"/>
+      <Object ID="object.skybox" Mesh="mesh.skybox" Texture="image.skybox_tropical"/>
+      <Object ID="object.sphere" Mesh="mesh.sphere"/>
+      <Object ID="object.MV_22_Fuselage" Mesh="mesh.MV_22_Fuselage"/>
+      <Object ID="object.MV_22_Tail_Flap" Mesh="mesh.MV_22_Tail_Flap"/>
+      <Object ID="object.MV_22_Tail_CS01" Mesh="mesh.MV_22_Tail_CS01"/>
+      <Object ID="object.MV_22_Tail_CS02" Mesh="mesh.MV_22_Tail_CS02"/>
+      <Object ID="object.MV_22_Bay_Door_02" Mesh="mesh.MV_22_Bay_Door_02"/>
+      <Object ID="object.MV_22_Bay_Door_01" Mesh="mesh.MV_22_Bay_Door_01"/>
+      <Object ID="object.MV_22_Engines" Mesh="mesh.MV_22_Engines"/>
+      <Object ID="object.MV_22_Prop01" Mesh="mesh.MV_22_Prop01"/>
+      <Object ID="object.MV_22_Prop02" Mesh="mesh.MV_22_Prop02"/>
+      <Object ID="object.MV_22_FlapL_02" Mesh="mesh.MV_22_FlapL_02"/>
+      <Object ID="object.MV_22_FlapL_01" Mesh="mesh.MV_22_FlapL_01"/>
+      <Object ID="object.MV_22_FlapR_01" Mesh="mesh.MV_22_FlapR_01"/>
+      <Object ID="object.MV_22_FlapR_02" Mesh="mesh.MV_22_FlapR_02"/>
+      <Object ID="object.MV_22_Gear_Door_L01" Mesh="mesh.MV_22_Gear_Door_L01"/>
+      <Object ID="object.MV_22_Gear_Door_R01" Mesh="mesh.MV_22_Gear_Door_R01"/>
+      <Object ID="object.MV_22_Gear_Door_L02" Mesh="mesh.MV_22_Gear_Door_L02"/>
+      <Object ID="object.MV_22_Gear_Door_R02" Mesh="mesh.MV_22_Gear_Door_R02"/>
+      <Object ID="object.MV_22_Gear_Door_F_02" Mesh="mesh.MV_22_Gear_Door_F_02"/>
+      <Object ID="object.MV_22_Gear_Door_F_01" Mesh="mesh.MV_22_Gear_Door_F_01"/>
+      <Object ID="object.MV_22_Gear_F" Mesh="mesh.MV_22_Gear_F"/>
+      <Object ID="object.MV_22_Gear_R" Mesh="mesh.MV_22_Gear_R"/>
+      <Object ID="object.MV_22_Gear_L" Mesh="mesh.MV_22_Gear_L"/>
+      <Object ID="object.MV_22_Cargo_Door04" Mesh="mesh.MV_22_Cargo_Door04"/>
+      <Object ID="object.MV_22_Cargo_door03" Mesh="mesh.MV_22_Cargo_door03"/>
+   </ObjectPool>
+   <ActorPool>
+      <Actor Color="1 1 1 1" Emissive="0" ID="actor.camera" Object="camera" Orientation="0 0.0992 -1.4711" Position="0 20 2" Scale="1 1 1" Specular="0 0 0 0"/>
+      <Actor Color="1 1 1 1" Emissive="0" Emissivity="0" Fog="true" ID="actor.infinite_plane" Object="object.infinite_plane" Orientation="0 0 0" Position="0 0 0" Priority="9" Scale="1 1 1" Specular="0 0 0 0"/>
+      <Actor Color="1 1 1 1" Emissive="0" Emissivity="0" Fog="true" ID="actor.skybox" InheritOrientation="false" Object="object.skybox" Orientation="0 0 0" Position="0 0 0" Priority="10" Scale="100 100 100" Specular="0 0 0 0"/>
+      <Actor Color="1 1 1 1" Emissive="0" Emissivity="0" Fog="true" ID="actor.light" Object="light" Orientation="0 0 0" Position="0 0 150" Priority="0" Scale="1.2 1.2 1.2" Specular="0 0 0 0"/>
+      <Actor Color="0 1 0 0.4" Emissive="0" Emissivity="0" Fog="true" ID="actor.target_sphere" Object="object.sphere" Orientation="0 0 0" Position="0 30 0" Priority="0" Scale="0.5 0.5 0.5" Specular="0 0 0 0"/>
+      <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Fuselage" Object="object.MV_22_Fuselage" Orientation="0 0 0" Position="2 0 0.123217" Priority="0" Scale="1 1 1" Specular="0 0 0 0">
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Tail_Flap" Object="object.MV_22_Tail_Flap" Orientation="0 0 0" Position="-0 0.687512 0.087466" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Tail_CS01" Object="object.MV_22_Tail_CS01" Orientation="0 0 0" Position="-0.174918 0.71966 0.198831" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Tail_CS02" Object="object.MV_22_Tail_CS02" Orientation="0 0 0" Position="0.174918 0.719528 0.198831" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Bay_Door_02" Object="object.MV_22_Bay_Door_02" Orientation="0 0 0" Position="0 0.303486 -0.070647" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Bay_Door_01" Object="object.MV_22_Bay_Door_01" Orientation="0 0 0" Position="0 0.586668 0.058079" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.6 0.6 0.6 1" Emissive="0" ID="actor.MV_22_Engines" Object="object.MV_22_Engines" Orientation="0 0 0" Position="-0 -0.011418 0.139334" Priority="0" Scale="1 1 1" Specular="0 0 0 0">
+            <Actor Color="0.1 0.1 0.1 1" Emissive="0" ID="actor.MV_22_Prop01" Object="object.MV_22_Prop01" Orientation="0 0 0" Position="0.485827 0.005715 0.105678" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+            <Actor Color="0.1 0.1 0.1 1" Emissive="0" ID="actor.MV_22_Prop02" Object="object.MV_22_Prop02" Orientation="0 0 0" Position="-0.485827 0.005715 0.105678" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         </Actor>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_FlapL_02" Object="object.MV_22_FlapL_02" Orientation="0 0 0" Position="0.358287 0.05473 0.137963" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_FlapL_01" Object="object.MV_22_FlapL_01" Orientation="0 0 0" Position="0.184151 0.071905 0.125418" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_FlapR_01" Object="object.MV_22_FlapR_01" Orientation="0 0 0" Position="-0.184151 0.072858 0.125418" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_FlapR_02" Object="object.MV_22_FlapR_02" Orientation="0 0 0" Position="-0.358287 0.054194 0.137963" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_L01" Object="object.MV_22_Gear_Door_L01" Orientation="0 0 0" Position="0.154331 0.161432 -0.050246" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_R01" Object="object.MV_22_Gear_Door_R01" Orientation="0 0 0" Position="-0.15425 0.161432 -0.050246" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_L02" Object="object.MV_22_Gear_Door_L02" Orientation="0 0 0" Position="0.122441 0.061875 -0.081581" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_R02" Object="object.MV_22_Gear_Door_R02" Orientation="0 0 0" Position="-0.122296 0.061875 -0.081581" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_F_02" Object="object.MV_22_Gear_Door_F_02" Orientation="0 0 0" Position="0.021673 -0.319313 -0.072777" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.5 0.5 0.5 1" Emissive="0" ID="actor.MV_22_Gear_Door_F_01" Object="object.MV_22_Gear_Door_F_01" Orientation="0 0 0" Position="-0.020612 -0.319371 -0.073995" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.1 0.1 0.1 1" Emissive="0" ID="actor.MV_22_Gear_F" Object="object.MV_22_Gear_F" Orientation="0 0 0" Position="0 -0.364204 -0.048059" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.1 0.1 0.1 1" Emissive="0" ID="actor.MV_22_Gear_R" Object="object.MV_22_Gear_R" Orientation="0 0 0" Position="-0.13467 0.172303 -0.04955" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.1 0.1 0.1 1" Emissive="0" ID="actor.MV_22_Gear_L" Object="object.MV_22_Gear_L" Orientation="0 0 0" Position="0.134646 0.172303 -0.04955" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.6 0.6 0.6 1" Emissive="0" ID="actor.MV_22_Cargo_Door04" Object="object.MV_22_Cargo_Door04" Orientation="0 0 0" Position="-0.076856 -0.167151 0.063781" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         <Actor Color="0.6 0.6 0.6 1" Emissive="0" ID="actor.MV_22_Cargo_door03" Object="object.MV_22_Cargo_door03" Orientation="0 0 0" Position="-0.086971 -0.166794 -0.048536" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+      </Actor>
+      <Actor Color="1 1 1 1" Emissive="0" Emissivity="0" Fog="true" ID="actor.dummy" Object="dummy" Orientation="0 0 0" Position="0 0 0.001" Priority="0" Scale="1 1 0" Specular="0 0 0 0">
+         <Actor Color="0 0 0 0.8" Emissive="0" Emissivity="0" Fog="true" ID="actor.MV_22_Fuselage.shadow" Object="object.MV_22_Fuselage" Orientation="0 0 0" Position="2 0 0" Priority="0" Scale="1.2 1.2 1.2" Specular="0 0 0 0">
+            <Actor Color="0 0 0 0.8" Emissive="0" Emissivity="0" Fog="true" ID="actor.MV_22_Engines.shadow" Object="object.MV_22_Engines" Orientation="0 0 0" Position="0 0 0" Priority="0" Scale="1 1 1" Specular="0 0 0 0"/>
+         </Actor>
+      </Actor>
+   </ActorPool>
+</Scene>
