@@ -150,8 +150,10 @@ void line_follower_loop(void){
 //the function that executes the stage between line_follower and the path_control
 //will execute when the condition for this calibration is matched
 void calibrate_between_stages(void){
-    motors.setSpeeds(200, 200); //set speed 
-    delay(1000); //delay until we will get out of lines and will execute path_control
+    int fixed_speed = 200; //a fixed size of speed that will get the car out of line before executing path_control
+    motors.setSpeeds(fixed_speed, fixed_speed); //set given speed 
+    int delay_before_path = 1000; //delay until we will get out of lines and will execute path_control
+    delay(delay_before_path); 
     motors.setSpeeds(0, 0); //set speed to zero before executing path_control
     zumoController.reset();
 }
@@ -181,6 +183,7 @@ void result_printer(void){
   //calculate delta of x and y according to prev and curr locations
   float delta_x = zumoController.car_state.posx - car_state_prev_x; 
   float delta_y = zumoController.car_state.posy - car_state_prev_y;
+  float curr_speed = sqrt(sq(delta_x)+sq(delta_y))/(dtMicros / 1000000.0f);
   //print current locations (x,y), error, time, speed
   Serial.print(zumoController.car_state.posx);
   Serial.print(" , ");
@@ -190,7 +193,7 @@ void result_printer(void){
   Serial.print(" , ");
   Serial.print(lastMicros);
   Serial.print(" , ");
-  Serial.println(sqrt(sq(delta_x)+sq(delta_y))/(dtMicros / 1000000.0f)); //calc for speed
+  Serial.println(curr_speed); //calc for speed
   //save curr values as prev in the end of func
   car_state_prev_x = zumoController.car_state.posx;
   car_state_prev_y = zumoController.car_state.posy;
