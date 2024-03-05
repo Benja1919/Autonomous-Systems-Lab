@@ -1,21 +1,33 @@
-/* Add Doc */
+/***************Ben Cohen 208685784***************/
+/*************Ori Avrahami 315416057*************/
 
+/* The following code implements the final project of 2023-2024 SemesterA
+we got a path in which we needed to both follow a black line and also 
+use path control in order to complete a full round of motion.
+The following code implemets thus by using the information learned in 
+class during the seminars. In this code we use both line_followe code
+provided in class, and also the code for sensors shown in seminar and 
+the code for path control. All three were merged (with adjusments) so 
+that the car can move autonomously according to the desire*/
+
+/****************Include Libraries****************/
 #include <Wire.h>
 #include <Zumo32U4.h>
 #include "ZumoController.h"
+/************************************************/
 
-// Constants
+/****************Variables***********************/
 #define SAMPLERATE 10 // 5 millis =  200 Hz
+#define NUM_SENSORS 5
 
+//points variables
 // Desired path in the format: {x, y} coordinates
 float desired_path[][2] = {
- //{0.1,0.1},{0.5,0.1},{0.7,1.2},{0.1,1.67}
-  {0.1, 0.1}, {0.3, 0.1} , {0.3,1.1} , {-0.4,1.18}
- }; 
+ //{0.1,0.1},{0.5,0.1},{0.7,1.2},{0.1,1.67} //for vehicle 116
+  {0.1, 0.1}, {0.3, 0.1} , {0.3,1.1} , {-0.4,1.18} //for vehicle 115
+ };  
 int num_points = sizeof(desired_path) / sizeof(desired_path[0]);
 
-// Zumo controller
-ZumoController zumoController;
 
 // time variables
 unsigned long lastMillis = 0;
@@ -23,14 +35,15 @@ unsigned long lastMicros = 0;
 float car_state_prev_x=0;
 float car_state_prev_y=0;
 int16_t error=0;
-
-
+int16_t lastError = 0;
 
 // This is the maximum speed the motors will be allowed to turn.
 // A maxSpeed of 400 lets the motors go at top speed.  Decrease
 // this value to impose a speed limit.
-const uint16_t maxSpeed = 255;
+const uint16_t maxSpeed = 255; //we checked and limited the car's max-speed to 255 due to our tests
 
+//Zumo Variables
+ZumoController zumoController;
 Zumo32U4Buzzer buzzer;
 Zumo32U4LineSensors lineSensors;
 Zumo32U4Motors motors;
@@ -41,16 +54,17 @@ bool proxLeftActive;
 bool proxFrontActive;
 bool proxRightActive;
 
-
 // Change next line to this if you are using the older Zumo 32U4
 // with a black and green LCD display:
 Zumo32U4LCD display;
 //DZumo32U4OLED display;
 
-int16_t lastError = 0;
-
-#define NUM_SENSORS 5
+//for sensors
 unsigned int lineSensorValues[NUM_SENSORS];
+/************************************************/
+
+
+/****************Functions***********************/
 
 // Sets up special characters for the display so that we can show
 // bar graphs.
@@ -68,6 +82,7 @@ void loadCustomCharacters()
   display.loadCustomCharacter(levels + 6, 6);  // 7 bars
 }
 
+// prints bar at display in comparison to height
 void printBar(uint8_t height)
 {
   if (height > 8) { height = 8; }
@@ -75,10 +90,10 @@ void printBar(uint8_t height)
   display.print(barChars[height]);
 }
 
+// function for calibrating the sensors - and adjusting speed accordingly
 void calibrateSensors()
 {
   display.clear();
-
   // Wait 1 second and then begin automatic sensor calibration
   // by rotating in place to sweep the sensors over the line
   delay(1000);
@@ -117,28 +132,32 @@ void showReadings()
   }
 }
 
+//the function that executes the line_follower loop and will execute when 
+//the condition for line_follower are matched
 void line_follower_loop(void){
     int16_t position = lineSensors.readLine(lineSensorValues);
     int16_t error = position - 2000;
-   // location_calc(error);
     int16_t speedDifference = error / 2 + 1 * (error - lastError);
     lastError = error;
-    int16_t leftSpeed = (int16_t)maxSpeed + speedDifference;
-    int16_t rightSpeed = (int16_t)maxSpeed - speedDifference;
-    leftSpeed = constrain(leftSpeed, 0, (int16_t)maxSpeed);
-    rightSpeed = constrain(rightSpeed, 0, (int16_t)maxSpeed);
-    motors.setSpeeds(leftSpeed, rightSpeed);
+    int16_t leftSpeed = (int16_t)maxSpeed + speedDifference; //adjust speed for left_motor
+    int16_t rightSpeed = (int16_t)maxSpeed - speedDifference; //adjust speed for right_motor
+    leftSpeed = constrain(leftSpeed, 0, (int16_t)maxSpeed); //adjust speed according to max
+    rightSpeed = constrain(rightSpeed, 0, (int16_t)maxSpeed); //adjust speed according to max
+    motors.setSpeeds(leftSpeed, rightSpeed); //set speed
  //   zumoController.odometry();
 }
 
+//the function that executes the stage between line_follower and the path_control
+//will execute when the condition for this calibration is matched
 void calibrate_between_stages(void){
-    motors.setSpeeds(200, 200);
-    delay(1000);
-    motors.setSpeeds(0, 0);
+    motors.setSpeeds(200, 200); //set speed 
+    delay(1000); //delay until we will get out of lines and will execute path_control
+    motors.setSpeeds(0, 0); //set speed to zero before executing path_control
     zumoController.reset();
 }
 
-
+//the function that executes the path_control loop and will execute when 
+//the condition for path_control are matched
 void path_cntrl_loop(void){
 //    reset variables
 //    zumoController.motorsSetSpeed(0, 0);
@@ -156,11 +175,13 @@ void path_cntrl_loop(void){
     }
 }
 
-void location_calc(void){
+void result_printer(void){
   unsigned long dtMicros = micros()-lastMicros;
   lastMicros = micros();
-  float delta_x = zumoController.car_state.posx - car_state_prev_x;
+  //calculate delta of x and y according to prev and curr locations
+  float delta_x = zumoController.car_state.posx - car_state_prev_x; 
   float delta_y = zumoController.car_state.posy - car_state_prev_y;
+  //print current locations (x,y), error, time, speed
   Serial.print(zumoController.car_state.posx);
   Serial.print(" , ");
   Serial.print(zumoController.car_state.posy);
@@ -169,11 +190,18 @@ void location_calc(void){
   Serial.print(" , ");
   Serial.print(lastMicros);
   Serial.print(" , ");
-  Serial.println(sqrt(sq(delta_x)+sq(delta_y))/(dtMicros / 1000000.0f));
+  Serial.println(sqrt(sq(delta_x)+sq(delta_y))/(dtMicros / 1000000.0f)); //calc for speed
+  //save curr values as prev in the end of func
   car_state_prev_x = zumoController.car_state.posx;
   car_state_prev_y = zumoController.car_state.posy;
 }
 
+/************************************************/
+
+/****************Setup***************************/
+
+//setup for the program that includes the necessary setup for both the line_follower code
+//and the sensors code together
 void setup()
 {
   lineSensors.initFiveSensors();
@@ -194,18 +222,18 @@ void setup()
   lastMicros = micros();
   // calculate gyro offset
   //zumoController.gyroOffset();
-  // initial conditions
-  zumoController.car_state.posx = 0.042426;
-  zumoController.car_state.posy = 0.042426;
-  zumoController.car_state.theta = -0.78539;
-  //zumoController.car_state.theta = 0;
   // Play music and wait for it to finish before we start driving.
   display.clear();
   display.print(F("Go!"));
   buzzer.play("L16 cdegreg4");
   while(buzzer.isPlaying());
+  //for baud
   Serial.begin(115200);
 }
+
+/************************************************/
+
+/****************Loop****************************/
 void loop()
 {
   int16_t position = lineSensors.readLine(lineSensorValues);
@@ -216,20 +244,27 @@ void loop()
   proxFrontActive = proxSensors.countsFrontWithRightLeds(); //maybe unncesseary
   proxRightActive = proxSensors.countsRightWithLeftLeds(); //maybe unncesseary
   delay(5);
+  //set the following conditions according to the sensors levels
+  //categorize the conditions to active/not active, and forward/sides
   bool condition_active_forward = (lineSensorValues[1]>500 || lineSensorValues[2]>500 || lineSensorValues[3]>500);
   bool condition_not_active_forward = (lineSensorValues[1]<300 && lineSensorValues[2]<300 && lineSensorValues[3]<300);
   bool condition_not_active_left_right = (lineSensorValues[0]<300||lineSensorValues[4]<300);
   bool condition_active_left_right = (lineSensorValues[0]>500||lineSensorValues[4]>500);
   
   if ((condition_active_forward && condition_not_active_left_right)|| (condition_not_active_forward && condition_active_left_right))
+  //if we see a line in front and no line in sides(or the opposite)->line_follower loop
   {
     line_follower_loop();
   }
   else if (condition_active_forward && condition_active_left_right ) {
+  //if we see a line in front and also line in sides->calibrate_between_stages of line_follower and path_control
     calibrate_between_stages();
   }
   else if (condition_not_active_forward && condition_not_active_left_right) {
+  //if we don't see a line at all ->path_control loop
     path_cntrl_loop();
   }
-  location_calc();
+  //at the end of all conditions -> print data according to result_printer()
+  result_printer();
 }
+/************************************************/
